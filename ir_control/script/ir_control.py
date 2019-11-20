@@ -7,7 +7,7 @@ from std_msgs.msg import String
 
 ROTATE_V_ANG = 90
 
-FORWARD_SPEED = 5
+BACK_SPEED = -5
 LEFT_SPEED    = 5
 RIGHT_SPEED   = -5
 
@@ -20,15 +20,15 @@ def ir_callback(d):
   pub = rospy.Publisher('motion/cmd_vel', Twist, queue_size=1)
   msg = Twist()
   if (d.data == "CENTER"):
-    x   = FORWARD_SPEED
+    x   = BACK_SPEED
     y   = 0
     z  = 0
   if (d.data == "CENTER_RIGHT"):
-    x   = FORWARD_SPEED
+    x   = BACK_SPEED
     y   = RIGHT_SPEED
     z  = 0
   if (d.data == "CENTER_LEFT"):
-    x   = FORWARD_SPEED
+    x   = BACK_SPEED
     y   = LEFT_SPEED
     z  = 0
   if (d.data == "RIGHT"):
