@@ -5,11 +5,11 @@ import rospy
 from geometry_msgs.msg import Twist
 from std_msgs.msg import String
 
-ROTATE_V_ANG = 90
+ROTATE_V_ANG = 0
 
-BACK_SPEED = -5
-LEFT_SPEED    = 5
-RIGHT_SPEED   = -5
+BACK_SPEED    = -15
+LEFT_SPEED    =  15
+RIGHT_SPEED   = -15
 
 def Rotate(x, y, theta):
   _x = x*math.cos(math.radians(theta)) - y*math.sin(math.radians(theta))
@@ -20,24 +20,24 @@ def ir_callback(d):
   pub = rospy.Publisher('motion/cmd_vel', Twist, queue_size=1)
   msg = Twist()
   if (d.data == "CENTER"):
-    x   = BACK_SPEED
-    y   = 0
+    x  = BACK_SPEED
+    y  = 0
     z  = 0
   if (d.data == "CENTER_RIGHT"):
-    x   = BACK_SPEED
-    y   = RIGHT_SPEED
+    x  = 0 #BACK_SPEED
+    y  = RIGHT_SPEED
     z  = 0
   if (d.data == "CENTER_LEFT"):
-    x   = BACK_SPEED
-    y   = LEFT_SPEED
+    x  = 0 #BACK_SPEED
+    y  = LEFT_SPEED
     z  = 0
   if (d.data == "RIGHT"):
-    x   = 0
-    y   = RIGHT_SPEED
+    x  = 0
+    y  = RIGHT_SPEED
     z  = 0
   if (d.data == "LEFT"):
-    x   = 0
-    y   = LEFT_SPEED
+    x  = 0
+    y  = LEFT_SPEED
     z  = 0
 
   msg.linear.x, msg.linear.y = Rotate(x, y, ROTATE_V_ANG)
