@@ -20,10 +20,10 @@ def ir_callback(d):
   pub = rospy.Publisher('motion/cmd_vel', Twist, queue_size=1)
   msg = Twist()
   if (d.data == "ALL"):
-    x  = 0
+    x  = BACK_SPEED
     y  = 0
     z  = 0
-    rospy.signal_shutdown('Quit')
+    # rospy.signal_shutdown('Quit')
   if (d.data == "CENTER"):
     x  = BACK_SPEED
     y  = 0
