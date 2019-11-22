@@ -62,7 +62,11 @@ void loop() {
   digitalWrite(7, right);
 
   if (center) {
-    if (left == HIGH and right == LOW) {
+    if (left == HIGH and right == HIGH) {
+      // All Light
+      str_msg.data = "ALL";
+      chatter.publish(&str_msg);
+    }else if (left == HIGH and right == LOW) {
       // Left + Center
       str_msg.data = "CENTER_LEFT";
       chatter.publish(&str_msg);
