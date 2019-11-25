@@ -7,6 +7,7 @@ from std_msgs.msg import String
 
 ROTATE_V_ANG = 0
 
+FORWARD_SPEED =  15
 BACK_SPEED    = -15
 LEFT_SPEED    =  15
 RIGHT_SPEED   = -15
@@ -43,6 +44,14 @@ def ir_callback(d):
   if (d.data == "LEFT"):
     x  = 0
     y  = LEFT_SPEED
+    z  = 0
+  if (d.data == "BACK"):
+    x  = FORWARD_SPEED
+    y  = 0
+    z  = 0
+  if (d.data == "STOP"):
+    x  = 0
+    y  = 0
     z  = 0
 
   msg.linear.x, msg.linear.y = Rotate(x, y, ROTATE_V_ANG)
